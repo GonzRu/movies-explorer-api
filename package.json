@@ -1,0 +1,36 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GonzRu/movies-explorer-api.git"
+  },
+  "author": "Denis Smirnov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GonzRu/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/GonzRu/movies-explorer-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.6.0",
+    "mongoose": "^6.7.0",
+    "process": "^0.11.10",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "nodemon": "^2.0.20"
+  }
+}
