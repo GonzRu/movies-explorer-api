@@ -1,6 +1,6 @@
 const { NODE_ENV } = process.env;
 
-module.exports = (err, req, res) => {
+module.exports = (err, req, res, nextIgnored) => {
   const { statusCode = 500, message } = err;
 
   const response = {
