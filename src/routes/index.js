@@ -9,8 +9,8 @@ const { requestLoggerMiddleware, errorLoggerMiddleware } = require('../midleware
 const errorHandlerMiddleware = require('../midlewares/errors');
 const rateLimitMiddleware = require('../midlewares/rateLimit');
 
-router.use(rateLimitMiddleware);
 router.use(requestLoggerMiddleware);
+router.use(rateLimitMiddleware);
 router.use(authRouter);
 router.use(authMiddleware);
 router.use(userRouter);
