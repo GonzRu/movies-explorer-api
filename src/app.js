@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const router = require('./routes');
 
+require('dotenv').config();
+
 const {
   PORT = 3000,
   CONNECTION_STRING = 'mongodb://localhost:27017/moviesdb',
