@@ -60,24 +60,31 @@ module.exports.getMe = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.updateMe = (req, res, next) => {
+module.exports.updateMe = async (req, res, next) => {
   const id = req.user._id;
   const { name, email } = req.body;
 
-  User.findByIdAndUpdate(
-    id,
-    { name, email },
-    {
-      new: true,
-      runValidators: true,
-    },
-  )
-    .then((user) => res.send(user))
-    .catch((err) => {
-      if (err instanceof mongoose.Error.ValidationError) {
-        next(new ValidationError(err.message));
-      } else {
-        next(err);
-      }
-    });
+  try {
+    let user = await User.exists({ email });
+    if (user) {
+      throw new EmailBusyError();
+    }
+
+    user = await User.findByIdAndUpdate(
+      id,
+      { name, email },
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+
+    res.send(user);
+  } catch (err) {
+    if (err instanceof mongoose.Error.ValidationError) {
+      next(new ValidationError(err.message));
+    } else {
+      next(err);
+    }
+  }
 };
