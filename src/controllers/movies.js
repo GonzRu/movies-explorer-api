@@ -4,9 +4,12 @@ const NotFoundError = require('../errors/notFoundError');
 const ForbiddenError = require('../errors/forbiddenError');
 const ValidationError = require('../errors/validationError');
 
-module.exports.getMovies = (req, res, next) => Movie.find({})
-  .then((movies) => res.send(movies))
-  .catch(next);
+module.exports.getMovies = (req, res, next) => {
+  const userId = req.user._id;
+  return Movie.find({ owner: userId })
+    .then((movies) => res.send(movies))
+    .catch(next);
+};
 
 module.exports.createMovie = (req, res, next) => {
   const userId = req.user._id;
