@@ -16,7 +16,6 @@ router.post(
       image: Joi.string().required().custom(linkValidator),
       trailerLink: Joi.string().required().custom(linkValidator),
       thumbnail: Joi.string().required().custom(linkValidator),
-      owner: Joi.string().hex().length(24),
       movieId: Joi.number().required().greater(0),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
