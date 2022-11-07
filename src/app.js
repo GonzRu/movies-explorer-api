@@ -6,12 +6,13 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const router = require('./routes');
+const { defaultConnectionString } = require('./consts/mongoDb');
 
 require('dotenv').config();
 
 const {
   PORT = 3000,
-  CONNECTION_STRING = 'mongodb://localhost:27017/moviesdb',
+  CONNECTION_STRING = defaultConnectionString,
 } = process.env;
 
 mongoose.connect(CONNECTION_STRING);

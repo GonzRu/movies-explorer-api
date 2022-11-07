@@ -1,3 +1,5 @@
+const { SERVER_ERROR } = require('../consts/errors');
+
 const { NODE_ENV } = process.env;
 
 module.exports = (err, req, res, nextIgnored) => {
@@ -5,7 +7,7 @@ module.exports = (err, req, res, nextIgnored) => {
 
   const response = {
     message: statusCode === 500
-      ? 'На сервере произошла ошибка'
+      ? SERVER_ERROR
       : message,
   };
 

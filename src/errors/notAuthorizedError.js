@@ -1,5 +1,5 @@
 class NotAuthorizedError extends Error {
-  constructor(message = 'Токен не передан или передан не в том формате') {
+  constructor(message) {
     super(message);
     this.statusCode = 401;
   }

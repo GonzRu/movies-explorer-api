@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const WrongLoginOrPasswordError = require('../errors/wrongLoginOrPasswordError');
+const { WRONG_LOGIN_OR_PASSWORD_ERROR } = require('../consts/errors');
+const NotAuthorizedError = require('../errors/notAuthorizedError');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -25,13 +26,13 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(email,
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        throw new WrongLoginOrPasswordError();
+        throw new NotAuthorizedError(WRONG_LOGIN_OR_PASSWORD_ERROR);
       }
 
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            throw new WrongLoginOrPasswordError();
+            throw new NotAuthorizedError(WRONG_LOGIN_OR_PASSWORD_ERROR);
           }
 
           return user;
