@@ -66,7 +66,7 @@ module.exports.updateMe = async (req, res, next) => {
 
   try {
     let user = await User.exists({ email });
-    if (user) {
+    if (user && user._id.toString() !== id) {
       throw new EmailBusyError();
     }
 

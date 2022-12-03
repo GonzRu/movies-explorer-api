@@ -2,7 +2,7 @@ const { SERVER_ERROR } = require('../consts/errors');
 
 const { NODE_ENV } = process.env;
 
-module.exports = (err, req, res, nextIgnored) => {
+module.exports = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
 
   const response = {
@@ -18,4 +18,6 @@ module.exports = (err, req, res, nextIgnored) => {
   res
     .status(statusCode)
     .send(response);
+
+  next();
 };
